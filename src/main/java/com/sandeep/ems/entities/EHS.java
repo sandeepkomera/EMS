@@ -16,6 +16,7 @@ public class EHS {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
 	private Integer insuranceId;
+	
 	private Integer coverageAmount;
 	private String insuranceType;
 
