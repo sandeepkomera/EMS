@@ -7,6 +7,6 @@ public interface OrganizationService {
 
 	public void joinOrganization(Employee employee, EHS employeeHealthInsurance);
 
-	public void leaveOrganization(Employee employee, EHS employeeHealthInsurance);
+	public void leaveOrganization(Integer id);
 
 }

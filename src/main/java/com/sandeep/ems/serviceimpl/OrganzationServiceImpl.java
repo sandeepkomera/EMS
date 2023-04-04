@@ -14,10 +14,13 @@ import com.sandeep.ems.service.OrganizationService;
 public class OrganzationServiceImpl implements OrganizationService {
 
 	@Autowired
-	EmployeeService employeeService;
+	private EmployeeService employeeService;
 
 	@Autowired
-	EHSService healthInsuranceService;
+	private EHSService healthInsuranceService;
+
+	@Autowired
+	private Employee employee;
 
 	@Override
 	@Transactional
@@ -28,9 +31,10 @@ public class OrganzationServiceImpl implements OrganizationService {
 
 	@Override
 	@Transactional
-	public void leaveOrganization(Employee employee, EHS employeeHealthInsurance) {
-		employeeService.deleteEmployeesByid(employee.getId());
-		healthInsuranceService.deleteEmployeeHealthInsuranceById(employeeHealthInsurance.getInsuranceId());
+	public void leaveOrganization(Integer id) {
+		employeeService.deleteEmployeesByid(id);
+		healthInsuranceService.deleteEmployeeHealthInsuranceById(employee.getEhs().getInsuranceId());
+
 	}
 
 }

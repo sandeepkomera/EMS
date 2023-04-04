@@ -12,7 +12,7 @@ public interface EmployeeService {
 
 	public Employee retriveEmployeeByid(Integer id);
 
-	public Employee deleteEmployeesByid(Integer id);
+	public void deleteEmployeesByid(Integer id);
 
 	public void deleteAllEmployees();
 
