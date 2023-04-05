@@ -27,11 +27,21 @@ public class OrganzationServiceImpl implements OrganizationService {
 		healthInsuranceService.registerEmployeeHealthInsurance(employeeHealthInsurance);
 	}
 
+//	@Override
+//	@Transactional(propagation = Propagation.REQUIRED)
+//	public void leaveOrganization(Integer eid) {
+//		Employee employeeId = employeeService.deleteEmployeesByid(eid);
+//			healthInsuranceService.deleteEmployeeHealthInsuranceById(employeeId.
+////		healthInsuranceService
+////				.deleteEmployeeHealthInsuranceById(employeeService.retriveEmployeeByid(eid).getEhs().getInsuranceId());
+//	}
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void leaveOrganization(Integer eid) {
-		Employee insuranceId = employeeService.retriveEmployeeByid(eid);
-		healthInsuranceService.deleteEmployeeHealthInsuranceById(insuranceId.getEhs().getInsuranceId());
+		healthInsuranceService
+				.deleteEmployeeHealthInsuranceById
+				(employeeService.retriveEmployeeByid(eid).getEhs().getInsuranceId());
 		employeeService.deleteEmployeesByid(eid);
 	}
 

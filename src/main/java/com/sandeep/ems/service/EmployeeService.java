@@ -10,7 +10,7 @@ public interface EmployeeService {
 
 	public List<Employee> retriveAllEmployees();
 
-	public Employee retriveEmployeeByid(Integer id);
+	public  Employee retriveEmployeeByid(Integer id);
 
 	public void deleteEmployeesByid(Integer id);
 

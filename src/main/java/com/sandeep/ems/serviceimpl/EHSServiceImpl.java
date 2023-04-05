@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sandeep.ems.dao.EHSDao;
 import com.sandeep.ems.entities.EHS;
+import com.sandeep.ems.exception.UserNotFoundException;
 import com.sandeep.ems.service.EHSService;
 
 @Service
@@ -27,7 +28,7 @@ public class EHSServiceImpl implements EHSService {
 		if (ehsDao.findById(insuranceId).isPresent()) {
 			ehsDao.deleteById(insuranceId);
 		} else
-			throw new RuntimeException("Insurance id is not present");
+			throw new UserNotFoundException("insuranceId -"+insuranceId);
 	}
 
 }
