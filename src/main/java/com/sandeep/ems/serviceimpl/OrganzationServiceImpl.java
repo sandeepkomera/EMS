@@ -2,6 +2,7 @@ package com.sandeep.ems.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sandeep.ems.entities.EHS;
@@ -19,22 +20,19 @@ public class OrganzationServiceImpl implements OrganizationService {
 	@Autowired
 	private EHSService healthInsuranceService;
 
-	@Autowired
-	private Employee employee;
-
 	@Override
-	@Transactional
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void joinOrganization(Employee employee, EHS employeeHealthInsurance) {
 		employeeService.saveEmployee(employee);
 		healthInsuranceService.registerEmployeeHealthInsurance(employeeHealthInsurance);
 	}
 
 	@Override
-	@Transactional
-	public void leaveOrganization(Integer id) {
-		employeeService.deleteEmployeesByid(id);
-		healthInsuranceService.deleteEmployeeHealthInsuranceById(employee.getEhs().getInsuranceId());
-
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void leaveOrganization(Integer eid) {
+		Employee insuranceId = employeeService.retriveEmployeeByid(eid);
+		healthInsuranceService.deleteEmployeeHealthInsuranceById(insuranceId.getEhs().getInsuranceId());
+		employeeService.deleteEmployeesByid(eid);
 	}
 
 }

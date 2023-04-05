@@ -30,15 +30,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Employee retriveEmployeeByid(Integer id) {
+	public Employee retriveEmployeeByid(Integer eid) {
 
-		return employeedao.findById(id).get();
+		return employeedao.findById(eid).get();
 
 	}
 
 	@Override
-	public void deleteEmployeesByid(Integer id) {
-		employeedao.deleteById(id);
+	public void deleteEmployeesByid(Integer eid) {
+		if (employeedao.findById(eid).isPresent()) {
+			employeedao.deleteById(eid);
+		} else
+			throw new RuntimeException("Employee id is not present");
 
 	}
 

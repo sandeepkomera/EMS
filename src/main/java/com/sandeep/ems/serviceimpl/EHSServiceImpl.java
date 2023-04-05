@@ -22,9 +22,12 @@ public class EHSServiceImpl implements EHSService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deleteEmployeeHealthInsuranceById(Integer insuranceId) {
-		ehsDao.deleteById(insuranceId);
-
+		if (ehsDao.findById(insuranceId).isPresent()) {
+			ehsDao.deleteById(insuranceId);
+		} else
+			throw new RuntimeException("Insurance id is not present");
 	}
 
 }

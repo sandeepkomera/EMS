@@ -6,15 +6,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
 @Table(name = "insurance")
 public class EHS {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
 	private Integer insuranceId;
 	
 	private Integer coverageAmount;

@@ -26,8 +26,6 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 
-
-
 	@Autowired
 	private OrganizationService organizationService;
 
@@ -35,6 +33,13 @@ public class EmployeeController {
 	public ResponseEntity<Void> joinOrganization(@RequestBody Employee employee, EHS healthinsurance) {
 		organizationService.joinOrganization(employee, healthinsurance);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
+
+	}
+
+	@DeleteMapping("/employees/delete/{id}")
+	public ResponseEntity<Void> deleteEmployeesByid(@PathVariable("id") Integer id) {
+		organizationService.leaveOrganization(id);
+		return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping("/employees/retriveAll")
@@ -49,11 +54,11 @@ public class EmployeeController {
 		return new ResponseEntity<Employee>(retriveEmpId, HttpStatus.OK);
 	}
 
-	@DeleteMapping("/employees/delete/{id}")
-	public ResponseEntity<Void> deleteEmployeesByid(@PathVariable("id") Integer id) {
-		employeeService.deleteEmployeesByid(id);
-		return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
-	}
+//	@DeleteMapping("/employees/delete/{id}")
+//	public ResponseEntity<Void> deleteEmployeesByid(@PathVariable("id") Integer id) {
+//		employeeService.deleteEmployeesByid(id);
+//		return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
+//	}
 
 	@DeleteMapping("/employees/deleteAll")
 	public ResponseEntity<Void> deleteAllEmployees() {
